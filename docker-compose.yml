@@ -1,0 +1,11 @@
+services:
+  ai-coach:
+    build: .
+    ports:
+      - "8005:8000"
+    environment:
+      LLM_PROVIDER: mock          # default; switch to "openai" + OPENAI_API_KEY for a real model
+      LLM_MAX_ATTEMPTS: "3"
+      LLM_RETRY_BASE_DELAY_S: "0.25"
+      MOCK_PLAN_JSON: ${MOCK_PLAN_JSON:-}
+    restart: unless-stopped
