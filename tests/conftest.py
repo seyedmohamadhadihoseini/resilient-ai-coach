@@ -16,7 +16,8 @@ from app.repository import InMemoryRepository
 
 
 @pytest.fixture
-def provider() -> MockLLMProvider:
+def provider(monkeypatch) -> MockLLMProvider:
+    monkeypatch.delenv("MOCK_PLAN_JSON", raising=False)
     return MockLLMProvider()
 
 

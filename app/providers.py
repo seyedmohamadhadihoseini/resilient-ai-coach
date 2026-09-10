@@ -13,6 +13,7 @@ depends only on this interface, never on a vendor SDK.
 from __future__ import annotations
 
 import json
+import os 
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional
 
@@ -51,7 +52,8 @@ class MockLLMProvider(LLMProvider):
     )
 
     def __init__(self) -> None:
-        self.raw_response: str = self.DEFAULT_PLAN
+        env_plan = os.environ.get("MOCK_PLAN_JSON", "").strip()
+        self.raw_response: str = env_plan or self.DEFAULT_PLAN
         self.script: List[object] = []
         self.calls: int = 0
 
