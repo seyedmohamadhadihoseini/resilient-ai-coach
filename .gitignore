@@ -6,4 +6,4 @@ __pycache__/
 
 # Env & local artifacts
 .env
-*.zip
+*.ziprepomix-output.xml
